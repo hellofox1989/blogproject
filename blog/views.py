@@ -13,13 +13,17 @@ def index(request):
 
 def detail(request,pk):
     post=get_object_or_404(Post,pk=pk)
+    
+    #阅读量+1,引用这个方法。
+    post.increase_views()
+    
     post.body=markdown.markdown(post.body,
                                 extensions=[
                                     'markdown.extensions.extra',
                                     'markdown.extensions.codehilite',
                                     'markdown.extensions.toc',
                                 ])
-    # return render(request,'blog/detail.html',context={'post': post})
+    # 
     form = CommentForm()
     # 获取这篇 post 下的全部评论
     comment_list = post.comment_set.all()
