@@ -88,7 +88,7 @@ class Post(models.Model):
         self.views +=1
         self.save(update_fields=['views'])
         
-    def save(self, *args, **kwargs)
+    def save(self, *args, **kwargs):
         #如果没有摘要
         if not self.excerpt
             # 首先实例化一个 Markdown 类，用于渲染 body 的文本
