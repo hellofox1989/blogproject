@@ -90,7 +90,7 @@ class Post(models.Model):
         
     def save(self, *args, **kwargs):
         #如果没有摘要
-        if not self.excerpt
+        if not self.excerpt:
             # 首先实例化一个 Markdown 类，用于渲染 body 的文本
             md = markdown.Markdown(extensions=[
                 'markdown.extensions.extra',
@@ -102,7 +102,7 @@ class Post(models.Model):
             self.excerpt = strip_tags(md.convert(self.body)[:54]
             
         #调用父类的save 方法将数据保存到数据库中
-        super（Post,self).save(*args,**kwargs)
+        super(Post,self).save(*args,**kwargs)
     #自动排序
     class Mete:
         ordering = ['-created_time']
