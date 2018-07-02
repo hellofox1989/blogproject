@@ -102,7 +102,7 @@ class Post(models.Model):
             self.excerpt = strip_tags(md.convert(self.body)[:54]
             
         #调用父类的save 方法将数据保存到数据库中
-        super(Post,self).save(*args, **kwargs)
+        super(Post, self).save(*args, **kwargs)
         
 
     #自动排序
