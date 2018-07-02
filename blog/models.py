@@ -94,7 +94,7 @@ class Post(models.Model):
             # 首先实例化一个 Markdown 类，用于渲染 body 的文本
             md = markdown.Markdown(extensions=[
                 'markdown.extensions.extra',
-                'markdown.extensions.conehilite',
+                'markdown.extensions.codehilite',
             ])
             # 先将 Markdown 文本渲染成 HTML 文本
             # strip_tags 去掉 HTML 文本的全部 HTML 标签
@@ -102,7 +102,9 @@ class Post(models.Model):
             self.excerpt = strip_tags(md.convert(self.body)[:54]
             
         #调用父类的save 方法将数据保存到数据库中
-        super(Post,self).save(*args,**kwargs)
+        super(Post,self).save(*args, **kwargs)
+        
+
     #自动排序
     class Mete:
         ordering = ['-created_time']
