@@ -3,12 +3,22 @@ from django.shortcuts import render,get_object_or_404
 from .models import Post,Category
 from django.http import HttpResponse
 from comments.forms import CommentForm
+from django.views.generic import ListView
 
 
+#创建一个类视图
+class IndexView(ListView):
+    model=Post
+    template_name = 'blog/index.html'
+    context_object_name = 'post_list'
+
+
+''' 被类视图取代
 def index(request):
     post_list=Post.objects.all().order_by('-created_time')
     
-    return render(request, 'blog/index.html',context={'post_list': post_list})
+    return render(request, 'blog/index.html',context={'post_list': post_list}) 
+'''
 # Create your views here.
 
 def detail(request,pk):
